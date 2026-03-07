@@ -1,0 +1,78 @@
+{
+  "log": {
+    "access": "/var/log/xray/access.log",
+    "error": "/var/log/xray/error.log",
+    "loglevel": "debug"
+  },
+  "inbounds": [
+    {
+	    "listen": "0.0.0.0",
+	    "port": 8443,
+	    "protocol": "vless",
+	    "settings": {
+		"clients": [
+		    {
+			"id": UUID,
+			"flow": "xtls-rprx-vision"
+		    }
+		],
+		"decryption": "none"
+	    },
+	    "streamSettings": {
+		"network": "tcp",
+		"security": "reality",
+		"realitySettings": {
+		    "show": false,
+		    "dest": "www.yahoo.com:443",
+		    "xver": 0,
+		    "serverNames": [
+			"www.yahoo.com"
+		    ],
+		    "privateKey": xray x25519 to generate,
+		    "minClientVer": "",
+		    "maxClientVer": "",
+		    "maxTimeDiff": 0,
+		    "shortIds": [
+			"",
+			"0001",
+			"0002",
+			"0003",
+			"0004",
+			"0005"
+		    ],
+		    "fingerprint": "chrome",
+		    "publicKey": xray x25519 to generate
+		}
+	    },
+	    "sniffing": {
+		"enabled": true,
+		"destOverride": [
+		    "http",
+		    "tls",
+		    "quic"
+		],
+		"routeOnly": true
+	    }
+	}
+  ],
+  "outbounds": [
+    {
+      "tag": "direct",
+      "protocol": "freedom"
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "type": "field",
+        "domain": ["geosite:ru-available-only-inside"],
+        "outboundTag": "block"
+      }
+    ]
+  }
+}

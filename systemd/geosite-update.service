@@ -1,0 +1,7 @@
+[Unit]
+Description=Update Xray geosite.dat
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/update-geosite.sh
