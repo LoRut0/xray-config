@@ -8,6 +8,15 @@ sudo ./install.sh
 
 ## Files
 
-/etc/xray/config.json
-/usr/local/share/xray/geosite.dat
-/usr/local/share/xray/geoip.dat
+```sh
+.
+├── install.sh
+├── README.md
+├── scripts
+│   └── update-geosite.sh
+├── systemd
+│   ├── geosite-update.service
+│   └── geosite-update.timer
+└── xray
+    └── config.json
+```
