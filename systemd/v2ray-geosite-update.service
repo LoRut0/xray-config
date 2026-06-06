@@ -1,0 +1,9 @@
+[Unit]
+Description=Update v2ray geosite.dat
+After=network.target
+
+[Service]
+Type=oneshot
+Environment="GEOSITE_DIR=/usr/local/share/v2ray"
+Environment="TO_RESTART=v2ray"
+ExecStart=/usr/local/bin/geosite-update.sh

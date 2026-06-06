@@ -1,0 +1,27 @@
+# Default outbound: everything not matched below goes direct
+# (replaces the v2rayN catch-all "port 0-65535 -> direct")
+default: direct
+
+# Torrents go direct
+protocol(bittorrent) -> direct
+
+# Block ads
+domain(geosite_runetfreedom:category-ads-all) -> block
+
+# Private networks direct
+ip(geoip_runetfreedom:private) -> direct
+
+# Private domains direct
+domain(geosite_runetfreedom:private) -> direct
+
+# DNS resolvers through proxy
+ip(1.0.0.1, 1.1.1.1, 8.8.8.8, 8.8.4.4) -> proxy
+
+# Discord voice (UDP high ports) through proxy
+network(udp) && port(50000-65535) -> proxy
+
+# RU-blocked networks through proxy
+ip(geoip_runetfreedom:ru-blocked) -> proxy
+
+# RU-blocked domains through proxy
+domain(geosite_runetfreedom:ru-blocked) -> proxy

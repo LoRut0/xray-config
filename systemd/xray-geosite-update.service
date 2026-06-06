@@ -1,0 +1,9 @@
+[Unit]
+Description=Update Xray geosite.dat
+After=network.target
+
+[Service]
+Type=oneshot
+Environment="GEOSITE_DIR=/usr/local/share/xray"
+Environment="TO_RESTART=xray"
+ExecStart=/usr/local/bin/geosite-update.sh
